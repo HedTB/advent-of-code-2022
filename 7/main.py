@@ -1,5 +1,5 @@
 from collections import defaultdict
-from pathlib import Path
+from pathlib import PurePath
 
 
 with open("7/input.txt", "r") as file:
@@ -83,7 +83,7 @@ def get_directory_sizes() -> dict:
             sizes["/".join(path_trace + [parts[1]])] = int(parts[0])
 
     for path, size in sizes.items():
-        for directory in Path(path).parents:
+        for directory in PurePath(path).parents:
             directory_sizes[str(directory)] += size
 
     return directory_sizes
