@@ -14,12 +14,14 @@ def part_1() -> int:
         for j, _ in enumerate(row):
             tree = trees[i][j]
 
-            top = tuple([tree > row[j] for row in trees[:i]])
-            left = tuple([tree > column for column in trees[i][:j]])
-            right = tuple([tree > column for column in trees[i][j + 1 :]])
-            bottom = tuple([tree > row[j] for row in trees[i + 1 :]])
+            directions = [
+                tuple(reversed([tree > row[j] for row in trees[:i]])),
+                tuple(reversed([tree > column for column in trees[i][:j]])),
+                tuple([tree > column for column in trees[i][j + 1 :]]),
+                tuple([tree > row[j] for row in trees[i + 1 :]]),
+            ]
 
-            if any((all(top), all(left), all(right), all(bottom))):
+            if any((all(direction) for direction in directions)):
                 visisble_trees += 1
 
     return visisble_trees
