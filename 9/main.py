@@ -45,7 +45,7 @@ class Knot(object):
 
 
 def part_1() -> int:
-    positions_visited = set()
+    positions_visited: set[tuple[int, int]] = set()
     head, tail = Knot(), Knot()
 
     for move, distance in lines:
@@ -61,7 +61,7 @@ def part_1() -> int:
 
 
 def part_2() -> int:
-    positions_visited = set()
+    positions_visited: set[tuple[int, int]] = set()
     head = Knot()
     knots = [Knot()]
 
